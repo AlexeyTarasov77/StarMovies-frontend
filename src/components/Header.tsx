@@ -1,15 +1,20 @@
 import searchIcon from "../assets/searchIcon.svg"
-import { Links } from "./Links"
-import { LINKS } from "../app/constants"
 
-export function Header(){
+
+interface ILinkProps{
+    name: string,
+    // href: string
+}
+
+export function Header(props: ILinkProps){
     return(
         <div>
             <header className="bg-gray-900 flex pt-4 pb-4 ">
                 <div className="text-gray-100 flex">
                     <h1 className="text-4xl font-black font-logo italic pr-16 px-3">STAR MOVIES</h1>
                     <div>
-                        <Links links={LINKS} />
+                        <h3>{props.name}</h3>
+                        {/* <Links links={LINKS} /> */}
                     </div>
 
                 </div>
