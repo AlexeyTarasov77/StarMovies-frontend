@@ -1,1 +1,1 @@
-export { mainPageRoute } from "./main.route"
+export { mainPageRoute } from "./main.route";
