@@ -8,16 +8,7 @@
     box-sizing: border-box;
     color: aliceblue;
     font-family: Arial, sans-serif;
-}
-   
-.app{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    color: white;
-    padding: 2%;
-    box-sizing: border-box;
+    /* background-color: #202020; */
 }
 
 .background-image{
@@ -32,18 +23,4 @@
     background-repeat: no-repeat;
     background-position: top; 
     filter: brightness(50%);
-}
-
-.container-app-filmslist-img{
-    object-fit: cover;
-    background-color: #202020;
-
-}
-
-.image-gallery {
-    display: flex
-;
-    flex-direction: row;
-    overflow-x: auto;
-    width: 100%;
 }
