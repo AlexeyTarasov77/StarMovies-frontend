@@ -1,22 +1,23 @@
 import searchIcon from "../assets/searchIcon.svg"
 // import { LINKS } from "../app/constants"
+import { Link } from "react-router-dom"
 
 
 interface ILinkProps{
     name: string,
-    href: string
+    href: string,
 }
 
 
-export function Header({ links }: { links: ILinkProps[]}){
+export function Header({ links } : { links: ILinkProps[]}){
     return(
         <div>
-            <header className="bg-gray-900 flex pt-4 pb-4 ">
+            <header className=" flex bg-slate-900 pt-4 pb-4 ">
                 <div className="text-gray-100 flex">
-                    <h1 className="text-4xl font-black font-logo italic pr-16 px-4">STAR MOVIES</h1>
+                <Link to="/"><h1 className="text-4xl font-black font-logo italic pr-16 px-4">STAR MOVIES</h1></Link>
                     <div>
                         <h3 className="font-header flex gap-20 text-3xl font-bold">{links.map((link) => {
-                                return <h3>{link.name}</h3>
+                                return <Link to={link.href}><h3>{link.name}</h3></Link>
                         })}                
                         </h3>
                     </div>
