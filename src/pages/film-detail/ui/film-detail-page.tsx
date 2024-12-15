@@ -1,6 +1,8 @@
+import { useParams } from "react-router-dom";
 import { FilmInList, IFilmInList } from "./film-in-list";
 
 export function FilmDetailPage() {
+  const { filmID } = useParams()
   const film = {
     id: 1,
     name: "Inception",

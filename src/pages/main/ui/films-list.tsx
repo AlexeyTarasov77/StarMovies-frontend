@@ -4,7 +4,7 @@ interface IFilmsProps{
     img_url: string
 }
 
-export function Films({images} : { images: IFilmsProps[]}){
+export function FilmsList({images} : { images: IFilmsProps[]}){
     return(
         <div>
             <div className="flex ml-3">

@@ -1,12 +1,23 @@
 import { Layout } from "../pages/layout"
-import { mainPageRoute } from "../pages/main"
-import { filmsListPageRoute } from "../pages/filmsList"
+import { FilmDetailPage } from "../pages/film-detail"
+import { FilmsListPage } from "../pages/films-list"
+import { MainPage } from "../pages/main"
 
 
 
 export const routes = [
   {
     element: <Layout />,
-    children: [mainPageRoute, filmsListPageRoute]
+    children: [
+      {
+        path: "/",
+        element: <MainPage />,
+      }, {
+      path: "/films",
+      element: <FilmsListPage />
+  }, {
+      path: "/films/:id",
+      element: <FilmDetailPage />
+    }]
   }
 ]
