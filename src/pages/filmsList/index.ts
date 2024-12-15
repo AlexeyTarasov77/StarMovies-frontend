@@ -1,0 +1,1 @@
+export { filmsListPageRoute } from "./filmsList.route"
