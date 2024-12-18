@@ -2,48 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-    margin: 0%;
-    padding: 0%;
-    box-sizing: border-box;
-    color: aliceblue;
-    font-family: Arial, sans-serif;
-}
-   
-.app{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    color: white;
-    padding: 2%;
-    box-sizing: border-box;
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  color: aliceblue;
+  font-family: Arial, sans-serif;
+  /* background-color: #202020; */
 }
 
-.background-image{
-    position: relative;
-    width: 100%;
-    height: 600px; 
-    overflow: hidden;
-    background: 
-    linear-gradient(to top, #424242, rgba(255, 255, 255, 0)), 
-        url(https://programmi.sky.it/images/cc/upload/c_scale,w_1920/f_webp/v1/background/background-men-in-black);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top; 
-    filter: brightness(50%);
-}
-
-.container-app-filmslist-img{
-    object-fit: cover;
-    background-color: #202020;
-
-}
-
-.image-gallery {
-    display: flex
-;
-    flex-direction: row;
-    overflow-x: auto;
-    width: 100%;
+.background-image {
+  position: relative;
+  width: 100%;
+  height: 600px; 
+  overflow: hidden;
+  background: linear-gradient(to top, #424242, rgba(255, 255, 255, 0)),
+    url"{film.imgUrl}";
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top; 
+  filter: brightness(50%);
 }
