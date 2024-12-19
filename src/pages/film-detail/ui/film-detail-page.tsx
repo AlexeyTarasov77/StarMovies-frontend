@@ -1,8 +1,21 @@
 import { useParams } from "react-router-dom";
 import { FilmInList, IFilmInList } from "./film-in-list";
+import { useEffect, useState } from "react"
+import "../../../app/index"
 
 export function FilmDetailPage() {
   const { filmID } = useParams()
+  const [genres, setGenres] = useState([]);
+    
+  useEffect(() => {
+    const getGenres = async () => {
+      const response = await fetch('http://your-api-url.com/genres')
+      const genres = await response.json()
+      setGenres(genres);
+    };
+    getGenres();
+  }, []);
+
   const film = {
     id: 1,
     name: "Inception",
@@ -13,6 +26,7 @@ export function FilmDetailPage() {
     releaseDate: new Date("2010-07-16"),
     genres: ["Genre1", "Genre2"]
   }
+
   const recommendedFilms: IFilmInList[] = [
     {
       id: 1,
@@ -54,12 +68,20 @@ export function FilmDetailPage() {
       stars: "John Travolta, Uma Thurman, Samuel L. Jackson",
       releaseDate: new Date("1994-10-14"),
     },
-  ];
+  ]
 
   return (
     <div className="object-cover flex flex-col" style={{ backgroundColor: "#202020" }}>
-      <div id="background-image" className="relative w-full h-[600px] overflow-hidden bg-cover bg-no-repeat bg-top brightness-50 "></div>
-      <div className="absolute top-0 left-0 w-full text-white p-4 box-border flex">
+    
+      <div
+        className="background-image"
+        style={{
+          backgroundImage: `linear-gradient(to top, #424242, rgba(255, 255, 255, 0)), url(${film.imgUrl})`,
+        }}
+      >
+      </div>
+      <div className="absolute w-full text-white p-4 pt-30 box-border flex">
+
         <div className="flex flex-row items-center">
           <div className="w-[70%] mr-2 mb-2">
             <h1 className="text-[23px]">
@@ -73,16 +95,17 @@ export function FilmDetailPage() {
               Country: <br /> {film.countryOfOrigin}
             </p>
             <p>
-              Genre: <br />
-              {...film.genres}
+              Genres: <br />
+              {film.genres.join(' ')}
             </p>
             <div>
               <br />
-              <p>★★★★★</p>
+              <p>{film.stars}</p>
               <p>{film.synopsis}</p>
             </div>
           </div>
         </div>
+
         <div className="flex space-x-4 overflow-x-scroll">
           {recommendedFilms.map(({ imgUrl }) => (
             <img className="max-h-[300px] rounded-lg" src={imgUrl} />

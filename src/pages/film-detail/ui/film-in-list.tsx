@@ -8,6 +8,7 @@ export interface IFilmInList {
 }
 
 export function FilmInList({ filmData }: { filmData: IFilmInList }) {
+
   return (
     <div className="mb-6">
       <div className="flex flex-row">
