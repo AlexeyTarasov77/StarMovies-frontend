@@ -5,15 +5,15 @@ import "../../../app/index"
 
 export function FilmDetailPage() {
   const { filmID } = useParams()
-  const [Allgenres, setGenres] = useState([]);
+  const [genres, setGenres] = useState([]);
     
   useEffect(() => {
-    async function getGenres() {
-      let response = await fetch('http://your-api-url.com/genres')
+    const getGenres = async () => {
+      const response = await fetch('http://your-api-url.com/genres')
       const genres = await response.json()
-      setGenres(genres)
-    }
-    getGenres()
+      setGenres(genres);
+    };
+    getGenres();
   }, []);
 
   const film = {
@@ -69,7 +69,6 @@ export function FilmDetailPage() {
       releaseDate: new Date("1994-10-14"),
     },
   ]
-  // fsd структура 
 
   return (
     <div className="object-cover flex flex-col" style={{ backgroundColor: "#202020" }}>
@@ -96,12 +95,12 @@ export function FilmDetailPage() {
               Country: <br /> {film.countryOfOrigin}
             </p>
             <p>
-              Genre: <br />
-              {...film.genres}
+              Genres: <br />
+              {film.genres.join(' ')}
             </p>
             <div>
               <br />
-              <p>★★★★★</p>
+              <p>{film.stars}</p>
               <p>{film.synopsis}</p>
             </div>
           </div>
