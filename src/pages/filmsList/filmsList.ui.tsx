@@ -3,10 +3,10 @@ import { Film } from "../../components/Film"
 
 // interface IFilmListProps{
 //     name: string,
-//     сontry: string,0
-//     year:number,10
-//     genre: strin21g,0
-//     img_url: str32in1g0
+//     сontry: string,
+//     year:number,
+//     genre: string,
+//     img_url: string
 // }
 // {images, names, contries, years,genres } : { images, names, contries, years, genres: IFilmListProps[]}
 

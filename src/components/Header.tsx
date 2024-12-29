@@ -1,5 +1,4 @@
 import searchIcon from "../assets/searchIcon.svg"
-// import { LINKS } from "../app/constants"
 import { Link } from "react-router-dom"
 
 

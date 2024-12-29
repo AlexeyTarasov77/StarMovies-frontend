@@ -1,4 +1,3 @@
-
 interface IFilmsProps{
     name: string,
     img_url: string
