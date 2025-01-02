@@ -71,7 +71,7 @@ export function FilmDetailPage() {
   ]
 
   return (
-    <div className="object-cover flex flex-col" style={{ backgroundColor: "#202020" }}>
+    <div className="object-cover flex flex-col " >
     
       <div
         className="background-image"
