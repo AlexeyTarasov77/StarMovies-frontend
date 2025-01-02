@@ -15,19 +15,23 @@ StarMovies is a comprehensive platform for movie enthusiasts, designed to help u
 If you’d like to set up the StarMovies project for development purposes, follow these steps:
 
 1. Clone the repository:
-  ```bash
-  git clone https://github.com/AlexeyTarasov77/StarMovies-frontend
-  ```
-2. Install the dependencies:
-  ```bash
-  cd StarMovies-frontend
-  npm i
-  ```
-3. Run dev server
-  ```bash
-  npm run dev
-  ```
 
+```bash
+git clone https://github.com/AlexeyTarasov77/StarMovies-frontend
+```
+
+2. Install the dependencies:
+
+```bash
+cd StarMovies-frontend
+npm i
+```
+
+3. Run dev server
+
+```bash
+npm run dev
+```
 
 ## Contributing
 
