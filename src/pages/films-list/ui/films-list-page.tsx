@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { FilmOverview } from "./film-overview";
+import { Vortex } from 'react-loader-spinner'
+import { useGenres } from "../hooks/useGenres";
 
 export const filmsList = [
   {
@@ -86,6 +88,7 @@ export const filmsList = [
 ];
 
 export function FilmsListPage() {
+  const { genres, isLoading, error } = useGenres(); 
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [filteredFilms, setFilteredFilms] = useState(filmsList);
 
@@ -108,24 +111,35 @@ export function FilmsListPage() {
               setSelectedGenre(event.target.value);
             }}
           >
-            <option value="All">All</option>
-            <option value="Triller">Triller</option>
-            <option value="Drama">Drama</option>
-            <option value="Scientific">Scientific</option>
-            <option value="Horror">Horror</option>
+            {genres.map((genre) => (
+              <option key={genre.id} value={genre.name}>
+                {genre.name}
+              </option>
+            ))}
           </select>
         </h1>
       </div>
       <div className="flex flex-wrap gap-10 mt-10 justify-center min-h-svh">
-        {filteredFilms.map((film) => {
-          return (
-            <FilmOverview
-              filmData={film}
-              key={film.id}
-            ></FilmOverview>
-          );
-        })}
+      {isLoading ? (
+          <div className="flex justify-center items-center">
+            <Vortex
+                visible={true}
+                height="200"
+                width="200"
+                ariaLabel="vortex-loading"
+                wrapperStyle={{}}
+                wrapperClass="vortex-wrapper"
+                colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+            />
+          </div>
+        ) : error ? (
+          <div className="text-red-500">{error}</div>
+        ) : (
+          filteredFilms.map((film) => (
+            <FilmOverview filmData={film} key={film.id}></FilmOverview>
+          ))
+        )}
       </div>
     </div>
-  );
+  )
 }
