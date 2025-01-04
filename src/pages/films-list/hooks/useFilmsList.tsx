@@ -11,7 +11,6 @@ interface IMovie {
 export function useFilmsList() {
 
   const [films, setFilms] = useState<IMovie[]>([]);
-  const [filteredFilms, setFilteredFilms] = useState<IMovie[]>([]);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   useEffect(() => {
@@ -25,7 +24,6 @@ export function useFilmsList() {
         }
         const filmsData = await response.json();
         setFilms(filmsData);
-        setFilteredFilms(filmsData);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);

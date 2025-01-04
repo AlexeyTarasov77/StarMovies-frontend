@@ -3,19 +3,12 @@ import { FilmOverview } from "./film-overview";
 import { TailSpin } from "react-loader-spinner";
 import { useFilmsList } from "../hooks/useFilmsList";
 
-interface IMovie {
-  id: number;
-  name: string;
-  genre: string;
-  img_url: string;
-  country: string;
-  year: number;
-}
+
 
 export function FilmsListPage() {
   const [selectedGenre, setSelectedGenre] = useState("All");
   const { films, isLoading, error } = useFilmsList();
-  const [filteredFilms, setFilteredFilms] = useState<IMovie[]>([]);
+  const [filteredFilms, setFilteredFilms] = useState(films);
 
   useEffect(() => {
     let filtered = films;
@@ -58,11 +51,10 @@ export function FilmsListPage() {
             />
           </div>
         )}
-        {!isLoading && error && (
+        {error && (
           <p className="text-red-500 text-xl">Error: {error}</p>
         )}
-        {!isLoading &&
-          !error &&
+        {filteredFilms &&
           filteredFilms.map((film) => (
             <FilmOverview filmData={film} key={film.id}></FilmOverview>
           ))}
