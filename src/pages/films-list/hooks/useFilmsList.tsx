@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BASE_URL } from "../../../app/constants";
+import { BACKEND_URL } from "../../../app/constants";
 interface IMovie {
   id: number;
   name: string;
@@ -18,7 +18,7 @@ export function useFilmsList() {
       setLoading(true);
       setError("");
       try {
-        const response = await fetch(`${BASE_URL}/movies/all`);
+        const response = await fetch(`${BACKEND_URL}/movies/all`);
         if (!response.ok) {
           throw new Error("Failed to fetch films");
         }
@@ -34,5 +34,5 @@ export function useFilmsList() {
     }
     fetchFilms();
   }, []);
-  return {films: films, isLoading: isLoading, error: error}
+  return { films: films, isLoading: isLoading, error: error }
 }

@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { FilmOverview } from "./film-overview";
 import { TailSpin } from "react-loader-spinner";
-import { useFilmsList } from "../hooks/useFilmsList";
+import { useFilmsList, useGenres } from "../hooks";
 
 
 
 export function FilmsListPage() {
   const [selectedGenre, setSelectedGenre] = useState("All");
-  const { films, isLoading, error } = useFilmsList();
+  const { films, isLoading: isFilmsLoading, error: filmsError } = useFilmsList();
+  const { genres, isLoading: isGenresLoading, error: genresError } = useGenres();
+  const isLoading = isFilmsLoading || isGenresLoading;
+  const error = filmsError || genresError;
   const [filteredFilms, setFilteredFilms] = useState(films);
 
   useEffect(() => {
@@ -28,11 +31,11 @@ export function FilmsListPage() {
               setSelectedGenre(event.target.value);
             }}
           >
-            <option value="All">All</option>
-            <option value="Triller">Triller</option>
-            <option value="Drama">Drama</option>
-            <option value="Scientific">Scientific</option>
-            <option value="Horror">Horror</option>
+            {genres.map((genre) => (
+              <option key={genre.id} value={genre.name}>
+                {genre.name}
+              </option>
+            ))}
           </select>
         </h1>
       </div>
