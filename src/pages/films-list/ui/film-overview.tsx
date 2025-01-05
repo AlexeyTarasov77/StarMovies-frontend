@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 interface IFilmProps {
   name: string;
-  contry: string;
+  country: string;
   year: number;
   genre: string;
   img_url: string;
@@ -20,7 +20,7 @@ export function FilmOverview({ filmData }: { filmData: IFilmProps }) {
           <div className="flex flex-col ">
             <h1 className="flex text-xl font-bold">{filmData.name}</h1>
             <h3 className="flex text-xl">
-              {filmData.contry} ({filmData.year})
+              {filmData.country} ({filmData.year})
             </h3>
             <h6>{filmData.genre}</h6>
           </div>

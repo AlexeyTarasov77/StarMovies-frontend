@@ -6,7 +6,7 @@ import "../../../app/index"
 export function FilmDetailPage() {
   const { filmID } = useParams()
   const [genres, setGenres] = useState([]);
-    
+
   useEffect(() => {
     const getGenres = async () => {
       const response = await fetch('http://your-api-url.com/genres')
@@ -72,7 +72,6 @@ export function FilmDetailPage() {
 
   return (
     <div className="object-cover flex flex-col" style={{ backgroundColor: "#202020" }}>
-    
       <div
         className="background-image"
         style={{

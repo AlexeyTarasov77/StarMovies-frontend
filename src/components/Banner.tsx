@@ -1,12 +1,11 @@
-
-interface IBannerProps{
+interface IBannerProps {
     name: string,
     img_url: string,
     id: number
 
 }
 
-export function Banner({images} : { images: IBannerProps[]}){
+export function Banner({ images }: { images: IBannerProps[] }) {
     return (
         <div>
             <div className="flex w-full">
@@ -17,7 +16,7 @@ export function Banner({images} : { images: IBannerProps[]}){
                     </div>
                     <div className="flex gap-3 ml-2 justify-between">
                         {images.map((image) => {
-                            return <img className="rounded-2xl w-64 h-80 " src={image.img_url}alt="" />
+                            return <img className="rounded-2xl w-64 h-80 " src={image.img_url} alt="" />
                         })}
                     </div>
                 </div>

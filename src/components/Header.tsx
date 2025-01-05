@@ -1,5 +1,5 @@
-import searchIcon from "../assets/searchIcon.svg";
-import { Link } from "react-router-dom";
+import searchIcon from "../assets/searchIcon.svg"
+import { Link } from "react-router-dom"
 
 interface ILinkProps {
   name: string;

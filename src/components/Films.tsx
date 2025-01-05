@@ -1,11 +1,10 @@
-
-interface IFilmsProps{
+interface IFilmsProps {
     name: string,
     img_url: string
 }
 
-export function Films({images} : { images: IFilmsProps[]}){
-    return(
+export function Films({ images }: { images: IFilmsProps[] }) {
+    return (
         <div>
             <div className="flex ml-3">
                 <div className="h-64 w-10 bg-white/50 rounded-2xl self-center">
