@@ -11,8 +11,8 @@ export function FilmInList({ filmData }: { filmData: IFilmInList }) {
 
   return (
     <div className="mb-6">
-      <div className="flex flex-row">
-        <div className="flex flex-col pr-4">
+      <div className="flex flex-row ">
+        <div className="flex flex-col pr-4 bg-backgroundImage">
           <img
             src={filmData.imgUrl}
             alt={filmData.name}
