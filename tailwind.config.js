@@ -26,6 +26,11 @@ export default {
         ]
     }
   },
+  extend: {
+    colors: {
+      customGray: '#404040', 
+    },
+  },
   plugins: []
   }
 }
