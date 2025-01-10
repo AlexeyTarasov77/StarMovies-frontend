@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { BACKEND_URL } from "../../../app/constants";
-interface IMovie {
+export interface IMovie {
   id: number;
   name: string;
-  genre: string;
+  genres: string[];
   coverUrl: string;
   country: string;
   releaseDate: Date;
@@ -11,6 +11,7 @@ interface IMovie {
 export function useFilmsList() {
 
   const [films, setFilms] = useState<IMovie[]>([]);
+  const [filteredFilms, setFilteredFilms] = useState<IMovie[]>([]);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   useEffect(() => {
@@ -24,6 +25,7 @@ export function useFilmsList() {
         }
         const filmsData: IMovie[] = await response.json();
         filmsData.forEach(film => film.releaseDate = new Date(film.releaseDate));
+        setFilteredFilms(filmsData)
         setFilms(filmsData);
       } catch (err) {
         if (err instanceof Error) {
@@ -35,5 +37,5 @@ export function useFilmsList() {
     }
     fetchFilms();
   }, []);
-  return { films, setFilms, isLoading, error }
+  return { films, filteredFilms, setFilteredFilms, isLoading, error }
 }

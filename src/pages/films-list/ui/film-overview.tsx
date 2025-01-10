@@ -10,6 +10,8 @@ interface IFilmProps {
 }
 
 export function FilmOverview({ filmData }: { filmData: IFilmProps }) {
+
+  filmData.releaseDate = new Date(filmData.releaseDate)
   return (
     <div>
       <Link to={`/films/${filmData.id}`}>
