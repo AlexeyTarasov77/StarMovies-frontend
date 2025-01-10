@@ -4,9 +4,9 @@ interface IMovie {
   id: number;
   name: string;
   genre: string;
-  img_url: string;
+  coverUrl: string;
   country: string;
-  year: number;
+  releaseDate: Date;
 }
 export function useFilmsList() {
 
@@ -18,11 +18,12 @@ export function useFilmsList() {
       setLoading(true);
       setError("");
       try {
-        const response = await fetch(`${BACKEND_URL}/movies/all`);
+        const response = await fetch(`${BACKEND_URL}/api/v1/movies/all`);
         if (!response.ok) {
           throw new Error("Failed to fetch films");
         }
-        const filmsData = await response.json();
+        const filmsData: IMovie[] = await response.json();
+        filmsData.forEach(film => film.releaseDate = new Date(film.releaseDate));
         setFilms(filmsData);
       } catch (err) {
         if (err instanceof Error) {
@@ -34,5 +35,5 @@ export function useFilmsList() {
     }
     fetchFilms();
   }, []);
-  return { films: films, isLoading: isLoading, error: error }
+  return { films, setFilms, isLoading, error }
 }

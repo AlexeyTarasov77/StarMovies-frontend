@@ -7,18 +7,17 @@ import { useFilmsList, useGenres } from "../hooks";
 
 export function FilmsListPage() {
   const [selectedGenre, setSelectedGenre] = useState("All");
-  const { films, isLoading: isFilmsLoading, error: filmsError } = useFilmsList();
+  const { films, setFilms, isLoading: isFilmsLoading, error: filmsError } = useFilmsList();
   const { genres, isLoading: isGenresLoading, error: genresError } = useGenres();
   const isLoading = isFilmsLoading || isGenresLoading;
   const error = filmsError || genresError;
-  const [filteredFilms, setFilteredFilms] = useState(films);
 
   useEffect(() => {
     let filtered = films;
     if (selectedGenre !== "All") {
       filtered = films.filter((film) => film.genre === selectedGenre);
     }
-    setFilteredFilms(filtered);
+    setFilms(filtered);
   }, [selectedGenre]);
   return (
     <div className="bg-slate-900">
@@ -57,8 +56,8 @@ export function FilmsListPage() {
         {error && (
           <p className="text-red-500 text-xl">Error: {error}</p>
         )}
-        {filteredFilms &&
-          filteredFilms.map((film) => (
+        {films &&
+          films.map((film) => (
             <FilmOverview filmData={film} key={film.id}></FilmOverview>
           ))}
       </div>

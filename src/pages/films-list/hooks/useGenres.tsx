@@ -15,7 +15,7 @@ export function useGenres() {
         async function getGenres() {
             try {
                 setIsLoading(true)
-                const response = await fetch(`${BACKEND_URL}genres/all`)
+                const response = await fetch(`${BACKEND_URL}/api/v1/movies/genres/all`)
                 const genres = await response.json()
                 setGenres(genres)
             }
