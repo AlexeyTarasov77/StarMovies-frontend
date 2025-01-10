@@ -6,20 +6,22 @@ import { useFilmsList, useGenres } from "../hooks";
 
 
 export function FilmsListPage() {
-  const [selectedGenre, setSelectedGenre] = useState("All");
-  const { films, isLoading: isFilmsLoading, error: filmsError } = useFilmsList();
+  const resetFiltersValue = "All"
+  const [selectedGenre, setSelectedGenre] = useState(resetFiltersValue);
+  const { films, filteredFilms, setFilteredFilms, isLoading: isFilmsLoading, error: filmsError } = useFilmsList();
+
   const { genres, isLoading: isGenresLoading, error: genresError } = useGenres();
   const isLoading = isFilmsLoading || isGenresLoading;
   const error = filmsError || genresError;
-  const [filteredFilms, setFilteredFilms] = useState(films);
 
   useEffect(() => {
     let filtered = films;
-    if (selectedGenre !== "All") {
-      filtered = films.filter((film) => film.genre === selectedGenre);
+    if (selectedGenre !== resetFiltersValue) {
+      filtered = films.filter((film) => film.genres.includes(selectedGenre));
     }
     setFilteredFilms(filtered);
   }, [selectedGenre]);
+
   return (
     <div className="bg-slate-900">
       <div className="bg-slate-900">
@@ -27,10 +29,9 @@ export function FilmsListPage() {
           Choose genre:
           <select
             className="ml-5 text-black text-xl rounded-2xl bg-white/50"
-            onChange={(event) => {
-              setSelectedGenre(event.target.value);
-            }}
+            onChange={(event) => setSelectedGenre(event.target.value)}
           >
+            <option value={resetFiltersValue}>{resetFiltersValue}</option>
             {genres.map((genre) => (
               <option key={genre.id} value={genre.name}>
                 {genre.name}
@@ -57,10 +58,9 @@ export function FilmsListPage() {
         {error && (
           <p className="text-red-500 text-xl">Error: {error}</p>
         )}
-        {filteredFilms &&
-          filteredFilms.map((film) => (
-            <FilmOverview filmData={film} key={film.id}></FilmOverview>
-          ))}
+        {filteredFilms.map((film) => (
+          <FilmOverview filmData={film} key={film.id}></FilmOverview>
+        ))}
       </div>
     </div>
   );

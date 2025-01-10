@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { BACKEND_URL } from "../../../app/constants";
-interface IMovie {
+export interface IMovie {
   id: number;
   name: string;
-  genre: string;
-  img_url: string;
+  genres: string[];
+  coverUrl: string;
   country: string;
-  year: number;
+  releaseDate: Date;
 }
 export function useFilmsList() {
 
   const [films, setFilms] = useState<IMovie[]>([]);
+  const [filteredFilms, setFilteredFilms] = useState<IMovie[]>([]);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   useEffect(() => {
@@ -18,11 +19,13 @@ export function useFilmsList() {
       setLoading(true);
       setError("");
       try {
-        const response = await fetch(`${BACKEND_URL}/movies/all`);
+        const response = await fetch(`${BACKEND_URL}/api/v1/movies/all`);
         if (!response.ok) {
           throw new Error("Failed to fetch films");
         }
-        const filmsData = await response.json();
+        const filmsData: IMovie[] = await response.json();
+        filmsData.forEach(film => film.releaseDate = new Date(film.releaseDate));
+        setFilteredFilms(filmsData)
         setFilms(filmsData);
       } catch (err) {
         if (err instanceof Error) {
@@ -34,5 +37,5 @@ export function useFilmsList() {
     }
     fetchFilms();
   }, []);
-  return { films: films, isLoading: isLoading, error: error }
+  return { films, filteredFilms, setFilteredFilms, isLoading, error }
 }
